@@ -102,8 +102,8 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   //next train
   var nextTrain = moment().add(minAway, "minutes");
-  console.log("arrival time: " + moment(nextTrain).format("HH:mm a"));
-  var TrainArrives = moment(nextTrain).format("HH:mm a");
+  console.log("arrival time: " + moment(nextTrain).format("HH:mm"));
+  var TrainArrives = moment(nextTrain).format("hh:mm a");
 
 
   // Add each train's data into the table
