@@ -16,6 +16,7 @@ var config = {
     projectId: "trainscheduler-dbc8c",
     storageBucket: "trainscheduler-dbc8c.appspot.com",
     messagingSenderId: "681407381839"
+};
 
 firebase.initializeApp(config);
 
@@ -28,7 +29,7 @@ $("#add-train-btn").on("click", function(event) {
   // Grabs user input
   var tName = $("#train-name-input").val().trim();
   var tDest = $("#destination-input").val().trim();
-  var tTime = moment($("#firstTime-input").val().trim(), "h:mm:ss").format("X");
+  var tTime = moment($("#firstTime-input").val().trim(), "HH:mm").format("X");
   var tFreq = $("#frequency-input").val().trim();
 
   // Creates local "temporary" object for holding employee data
@@ -40,7 +41,7 @@ $("#add-train-btn").on("click", function(event) {
   };
 
   // Uploads train data to the database
-  database.ref().push(newEmp);
+  database.ref().push(newTrain);
 
   // Logs everything to console
   console.log(newTrain.name);
@@ -78,13 +79,34 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   
   // Calculate the next train from time now
   // To calculate the time
-  var nextTrain = moment().diff(moment.unix(empStart, "X"), "months");
-  console.log(empMonths);
+  var trainStartPretty = moment.unix(tTime).format("HH:mm");
+  
+  var tTimeConv = moment(tTime, "X").subtract(1, "years");
+  
+  //current time
+  var currentTime = moment();
+  console.log("current time: " + moment(currentTime).format("HH:mm"));
+  
+  //difference between times
+  var diffT = moment().diff(moment(tTimeConv), "minutes");
+  console.log("difference in time: " + diffT);
+
+  //time apart
+  var tRemainder = diffT % tFreq;
+  console.log(tRemainder);
+
+  //minutes till next train
+  var minAway = tFreq - tRemainder;
+  console.log("minutes till next train: " + minAway);
+
+  //next train
+  var nextTrain = moment().add(minAway, "minutes");
+  console.log("arrival time: " + moment(nextTrain).format("HH::mm"));
 
 
   // Add each train's data into the table
   $("#train-table > tbody").append("<tr><td>" + tName + "</td><td>" + tDest + "</td><td>" +
-  tTime + "</td><td>" + tFreq + "</td><td>" + nextTrain + "</td></tr>");
+  tFreq + "</td><td>" + trainStartPretty + "</td><td>" + minAway + "</td></tr>");
 });
 
 // Example Time Math
