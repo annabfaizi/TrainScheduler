@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Firebase Reference -->
@@ -47,8 +47,8 @@
                     <th>Train Name</th>
                     <th>Destination</th>
                     <th>Frequency (min)</th>
-                    <th>Next Train</th>
-                    <th>Time Away</th>                    
+                    <th>Next Train Arriving</th>
+                    <th>Time Away (min)</th>                    
                   </tr>
                 </thead>
                 <tbody>
@@ -75,7 +75,7 @@
                   <input class="form-control" id="destination-input" type="text">
                 </div>
                 <div class="form-group">
-                  <label for="firstTime-input">First Train Time <i>(in military time)</i></label>
+                  <label for="firstTime-input">First Train Time <i>(in military time HH:mm)</i></label>
                   <input class="form-control" id="firstTime-input" type="text">
                 </div>
                 <div class="form-group">
