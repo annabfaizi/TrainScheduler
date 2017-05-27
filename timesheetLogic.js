@@ -101,18 +101,10 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   //next train
   var nextTrain = moment().add(minAway, "minutes");
-  console.log("arrival time: " + moment(nextTrain).format("HH::mm"));
+  console.log("arrival time: " + moment(nextTrain).format("HH:mm"));
 
 
   // Add each train's data into the table
   $("#train-table > tbody").append("<tr><td>" + tName + "</td><td>" + tDest + "</td><td>" +
-  tFreq + "</td><td>" + trainStartPretty + "</td><td>" + minAway + "</td></tr>");
+  tFreq + "</td><td>" + nextTrain + "</td><td>" + minAway + "</td></tr>");
 });
-
-// Example Time Math
-// -----------------------------------------------------------------------------
-// Assume Employee start date of January 1, 2015
-// Assume current date is March 1, 2016
-
-// We know that this is 15 months.
-// Now we will create code in moment.js to confirm that any attempt we use mets this test case
