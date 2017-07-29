@@ -1,2 +1,2 @@
-# Week7HW-TrainScheduler
-Train Schedule Traker
+#TrainScheduler
+Train Schedule Tracker
